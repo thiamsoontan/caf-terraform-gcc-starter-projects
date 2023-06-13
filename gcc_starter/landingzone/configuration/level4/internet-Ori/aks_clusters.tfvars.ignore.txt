@@ -1,0 +1,108 @@
+aks_clusters = {
+  cluster_re1 = {
+    name               = "cluster-re1" 
+    resource_group_key = "aks_re1"
+    os_type            = "Linux"
+
+    # latest version 04 Apr 2023 - 1.24.9 , 4th Oct 2022 - 1.23.12
+    kubernetes_version = "1.24.9" 
+
+    network_policy = {
+      network_plugin    = "azure"
+      load_balancer_sku = "Standard"
+    }
+
+    # default aks
+    #Pod CIDR -
+    #Service CIDR 10.0.0.0/16
+    #DNS service IP 10.0.0.10
+    #Docker bridge CIDR 172.17.0.1/16
+
+    network_profile = {
+      network_plugin     = "azure"
+      network_policy     = "azure"
+      service_cidr       = "11.0.0.0/16" # to change 10 to 8 or 11
+      dns_service_ip     = "11.0.0.10" # to change 10 to 8 or 11
+      docker_bridge_cidr = "11.1.0.1/16" # to change 10 to 8 or 11
+    }
+
+    # testing - set to false for testing
+    # private_cluster_enabled = true
+    private_cluster_enabled = false # true # false
+
+    # testing - test identity and role based access control
+    identity = {
+      type                 = "UserAssigned"
+      managed_identity_key = "aks_usermsi"
+    }
+
+    # role_based_access_control = {
+    #   enabled = true
+    #   azure_active_directory = {
+    #     managed = true
+    #   }
+    # }
+
+    default_node_pool = {
+      name    = "sharedsvc" # max length of 12, and only have characters a-z0-9
+      vm_size = "Standard_DS2_v2"
+      subnet = {
+        # resource_id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet/subnets/gcf-snet-aks-nodepool-system-internet"
+        # resource_id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet/subnets/gcf-snet-app-internet"
+        resource_id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet/subnets/cep-snet-app-aks-internet"
+      }
+      availability_zones           = ["1"] # ["1","2","3"] # ["1"] # set to 3 AZs for production
+      enabled_auto_scaling         = true
+      enable_node_public_ip        = false
+      max_pods                     = 30
+      node_count                   = 2 # set to >= 2 in production
+      os_disk_size_gb              = 256
+      # when using ingress_application_gateway you need an additional node_pool as agic is a non-critical addon
+      only_critical_addons_enabled = false     
+      # latest version 4th Oct 2022 - 1.23.12                
+      orchestrator_version         = "1.24.9" 
+      tags = { 
+        purpose = "gcf node pool" 
+        project-code = "gcf" 
+        env = "staging" 
+        zone = "internet"
+        tier = "app"        
+      } 
+    }
+
+    # aks will create a new resource group to deploy vmss
+    node_resource_group_name = "aks-nodes-re1" # resource group "name" string, NOT the "key" where the nodes resources deployed to 
+    
+    addon_profile = {
+      oms_agent = {
+        enabled = true
+        # use "log_analytics_workspace_id" if using central log analytics workspace from gcc
+        log_analytics_workspace_id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-rg-agency-law/providers/Microsoft.OperationalInsights/workspaces/gcci-law-central-logs",
+      }
+      azure_policy = {
+        enabled = true
+      }
+      # # AGIC as an AKS add-on
+      # ingress_application_gateway = {
+      #   enabled = true
+      #   key     = "reverse_proxy_agw_re1" #"agw" 
+      # }
+    }
+
+    tags = { 
+      purpose = "internet aks cluster" 
+      project-code = "gcf" 
+      env = "sandpit" 
+      zone = "internet"
+      tier = "app"          
+    } 
+
+    # diagnostic_profiles = {
+    #   central_logs_region = {
+    #     definition_key   = "azure_kubernetes_cluster"
+    #     destination_type = "log_analytics"
+    #     destination_key  = "central_logs"
+    #   }
+    # }
+  }
+}
