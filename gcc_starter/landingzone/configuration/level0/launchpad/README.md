@@ -5,21 +5,12 @@ purge all deleted key vaults before apply the launchpad
 
 ## Deployment
 
-# msdn subscrition
-e22a351f-db36-4a02-9793-0f2189d5f3ab
 
 # login to sandpit tenant
-rover login  --tenant ac20add1-ffda-45c1-adc5-16a0db15810f
+rover login  --tenant {your subscription id}
 
-# sandpit tenant - must use this to login
-az login --tenant ac20add1-ffda-45c1-adc5-16a0db15810f
-
-# CEP subscription
-az account set --subscription 6f035180-4066-42f0-b0fa-5fbc1ae67500
-
-# Forum subscription
-az account set --subscription 4d943279-dcc7-4b40-83b7-b7ce05a22117
-
+# set to subscription (optional)
+az account set --subscription {your subscription id}
 
 
 ```bash
