@@ -7,7 +7,8 @@ diagnostics_destinations = {
   # Storage keys must reference the azure region name
   log_analytics = {   # <- this is destination type
     central_logs = {  # <- this is destination key
-      log_analytics_resource_id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-rg-agency-law/providers/Microsoft.OperationalInsights/workspaces/gcci-law-central-logs",
+      # TODO: change to your subscription id
+      log_analytics_resource_id = "/subscriptions/{subscription id}/resourceGroups/gcci-rg-agency-law/providers/Microsoft.OperationalInsights/workspaces/gcci-law-central-logs",
       log_analytics_destination_type = "Dedicated"
     }
   }
