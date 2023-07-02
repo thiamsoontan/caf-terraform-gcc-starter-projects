@@ -24,8 +24,3 @@ rover -lz rover -lz /tf/caf/landingzones/caf_solution \
 
  
 
-
-
-
-# apim nsg
-https://docs.microsoft.com/en-us/azure/api-management/api-management-using-with-vnet?tabs=stv2
