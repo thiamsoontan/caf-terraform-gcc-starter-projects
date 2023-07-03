@@ -12,8 +12,12 @@ rover login  --tenant {your subscription id}
 # set to subscription (optional)
 az account set --subscription {your subscription id}
 
-# change the prefix to your company name (max 4 characters) in global_settings.tfvars
+# change the prefix 
+Update "prefix" in global_settings.tfvars to your company name (max 4 characters) 
+
 prefix = "xxxx"
+
+
 
 ```bash
 rover -lz /tf/caf/landingzones/caf_launchpad \
