@@ -11,27 +11,22 @@ private_dns = {
       app_ingress_vnet_link = {
         name               = "app-ingress-vnet"
         registration_enabled = true
-        virtual_network_id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-ingress"
+        virtual_network_id = "/subscriptions/{your subscription id}/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-ingress"
       }      
       app_internet_vnet_link = {
         name               = "app-internet-vnet"
         registration_enabled = true
-        virtual_network_id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet"
-      }
-      # app_intranet_vnet_link = {
-      #   name               = "app-intranet-vnet"
-      #   registration_enabled = true
-      #   virtual_network_id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-intranet"
-      # }      
+        virtual_network_id = "/subscriptions/{your subscription id}/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet"
+      }  
       app_management_vnet_link = {
         name               = "app-management-vnet"
         registration_enabled = true
-        virtual_network_id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-management"
+        virtual_network_id = "/subscriptions/{your subscription id}/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-management"
       }  
       app_devops_vnet_link = {
         name               = "app-devops-vnet"
         registration_enabled = true
-        virtual_network_id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-devops"
+        virtual_network_id = "/subscriptions/{your subscription id}/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-devops"
       }               
     }
 
