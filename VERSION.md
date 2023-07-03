@@ -8,7 +8,7 @@ Versions:
 
 terraform: Terraform version v1.5.0-rc1
 aztfmod/caf/azurerm: registry.terraform.io/aztfmod/caf/azurerm 5.6.10
-landingzones: 5.6.9 
+landingzones: 5.6.10 
   - git clone https://github.com/Azure/caf-terraform-landingzones.git /tf/caf/landingzones
 azurerm: 3.59
   - file to check: /tf/caf/landingzones/aztfmod/main.tf
